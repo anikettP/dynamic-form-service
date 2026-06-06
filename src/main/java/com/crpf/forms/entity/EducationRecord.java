@@ -21,14 +21,14 @@ public class EducationRecord extends Auditable {
     @Column(name = "force_no", nullable = false, length = 50)
     private String forceNo;
 
-    @Column(nullable = false, length = 100)
+    /*@Column(nullable = false, length = 100)
     private String name;
 
     @Column(length = 50)
     private String rank;
 
     @Column(length = 100)
-    private String unit;
+    private String unit;*/
 
     @Column(name = "education_type", nullable = false, length = 100)
     private String educationType;

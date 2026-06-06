@@ -28,7 +28,6 @@ class EducationRecordRepositoryTest {
     void testSaveRecordAndAuditing() {
         EducationRecord record = EducationRecord.builder()
                 .forceNo("F999")
-                .name("Test Employee")
                 .educationType("MATRICULATION")
                 .examPassed("10th Standard")
                 .passingYear(LocalDate.of(2015, 1, 1))
@@ -55,7 +54,6 @@ class EducationRecordRepositoryTest {
     void testDuplicateVerificationChecks() {
         EducationRecord record = EducationRecord.builder()
                 .forceNo("F100")
-                .name("Employee 1")
                 .educationType("DIPLOMA")
                 .examPassed("Computer Science")
                 .passingYear(LocalDate.of(2020, 1, 1))

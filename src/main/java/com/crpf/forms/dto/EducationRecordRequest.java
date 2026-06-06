@@ -11,9 +11,9 @@ import java.time.LocalDate;
 @Builder
 public class EducationRecordRequest {
     private String forceNo;
-    private String name;
+    /*private String name;
     private String rank;
-    private String unit;
+    private String unit;*/
     private String educationType;
     private String schoolName;
     private LocalDate passingYear;

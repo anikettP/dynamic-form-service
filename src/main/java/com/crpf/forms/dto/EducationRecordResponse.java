@@ -13,9 +13,9 @@ import java.time.OffsetDateTime;
 public class EducationRecordResponse {
     private Long id;
     private String forceNo;
-    private String name;
+/*    private String name;
     private String rank;
-    private String unit;
+    private String unit;*/
     private String educationType;
     private String schoolName;
     private LocalDate passingYear;
