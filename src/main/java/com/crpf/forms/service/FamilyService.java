@@ -168,4 +168,21 @@ public class FamilyService {
             throw new ValidationException(errors);
         }
     }
+
+    public Boolean createFamilyMember(String forceNo, Map<String, Object> formData) {
+        FamilyMember familyMember = new FamilyMember();
+        familyMember.setActive(true);
+        familyMember.setForceNo(forceNo);
+        familyMember.setForceNo(forceNo);
+        familyMember = familyMemberRepository.save(familyMember);
+        return Boolean.TRUE;
+    }
+
+    public Boolean updateFamilyMember(Long id, Map<String, Object> formData) {
+        FamilyMember existing = familyMemberRepository.findByIdAndActiveTrue(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Family member not found with id: " + id));
+        existing.setFormData(formData);
+        existing = familyMemberRepository.save(existing);
+        return Boolean.TRUE;
+    }
 }

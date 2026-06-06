@@ -2,9 +2,12 @@ package com.crpf.forms.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Map;
 
 @Entity
 @Table(name = "family_member")
@@ -67,4 +70,8 @@ public class FamilyMember extends Auditable {
     @Column(nullable = false)
     @Builder.Default
     private boolean active = true;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "form_data", columnDefinition = "jsonb")
+    private Map<String, Object> formData;
 }

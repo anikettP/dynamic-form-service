@@ -1,6 +1,8 @@
 # Dynamic Form-Based Spring Boot Microservice
 
-A production-ready, enterprise-grade Spring Boot 3.x microservice that implements **metadata-driven dynamic forms** and family member management. The service features a fully generic, dynamic validation framework, JWT authentication with role-based security, comprehensive auditing, soft deletion, and containerized deployment options.
+A production-ready, enterprise-grade Spring Boot 3.x microservice that implements **metadata-driven dynamic forms** and
+family member management. The service features a fully generic, dynamic validation framework, JWT authentication with
+roleEntity-based security, comprehensive auditing, soft deletion, and containerized deployment options.
 
 ---
 
@@ -102,7 +104,7 @@ erDiagram
 * `GET /api/education/{id}` - Get education record by ID.
 * `POST /api/education` - Create a new record (requires CREATE authority).
 * `PUT /api/education/{id}` - Update a record (requires UPDATE authority).
-* `DELETE /api/education/{id}` - Soft-delete record (requires DELETE authority - ADMIN role).
+* `DELETE /api/education/{id}` - Soft-delete record (requires DELETE authority - ADMIN roleEntity).
 
 ### 4. Family Module
 * `GET /api/family` - Retrieve active family members.

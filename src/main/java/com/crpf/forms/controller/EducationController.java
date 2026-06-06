@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/education")
@@ -47,11 +48,27 @@ public class EducationController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @PostMapping("/dynamicForm/{forceNo}")
+    @PreAuthorize("hasAuthority('CREATE')")
+    @Operation(summary = "Create a new education record")
+    public ResponseEntity<Boolean> dynamicFormCreateRecord(@PathVariable String forceNo,@RequestBody Map<String, Object> formData) {
+        Boolean response = educationService.createEducationRecord(forceNo,formData);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('UPDATE')")
     @Operation(summary = "Update an existing education record by ID")
     public ResponseEntity<EducationRecordResponse> updateRecord(@PathVariable Long id, @RequestBody EducationRecordRequest request) {
         EducationRecordResponse response = educationService.updateEducationRecord(id, request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/dynamicForm/{id}")
+    @PreAuthorize("hasAuthority('UPDATE')")
+    @Operation(summary = "Update an existing education record by ID")
+    public ResponseEntity<Boolean> dynamicFormUpdateRecord(@PathVariable Long id, @RequestBody Map<String, Object> formData) {
+        Boolean response = educationService.updateEducationRecord(id, formData);
         return ResponseEntity.ok(response);
     }
 

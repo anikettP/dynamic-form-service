@@ -193,4 +193,23 @@ public class EducationService {
             throw new ValidationException(errors);
         }
     }
+
+    public Boolean createEducationRecord(String forceNo, Map<String, Object> formData) {
+        EducationRecord entity = new EducationRecord();
+        entity.setForceNo(forceNo);
+        entity.setFormData(formData);
+        entity.setActive(true);
+        EducationRecord saved = educationRecordRepository.save(entity);
+        return Boolean.TRUE;
+    }
+
+    public Boolean updateEducationRecord(Long id, Map<String, Object> formData) {
+        EducationRecord existing =
+                educationRecordRepository.findByIdAndActiveTrue(id)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException(
+                                        "Education record not found with id: " + id));
+        existing.setFormData(formData);
+        return Boolean.TRUE;
+    }
 }
