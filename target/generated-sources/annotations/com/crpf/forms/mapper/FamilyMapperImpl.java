@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-08T19:19:45+0530",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.46.0.v20260407-0427, environment: Java 21.0.10 (Eclipse Adoptium)"
+    date = "2026-06-08T19:30:12+0530",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
 public class FamilyMapperImpl implements FamilyMapper {
@@ -24,18 +24,18 @@ public class FamilyMapperImpl implements FamilyMapper {
 
         FamilyMember.FamilyMemberBuilder familyMember = FamilyMember.builder();
 
-        familyMember.aadhaarNumber( request.getAadhaarNumber() );
-        familyMember.autisticMember( request.isAutisticMember() );
-        familyMember.disabilityPercentage( request.getDisabilityPercentage() );
-        familyMember.dob( request.getDob() );
-        familyMember.employed( request.isEmployed() );
         familyMember.forceNo( request.getForceNo() );
-        familyMember.handicapped( request.isHandicapped() );
         familyMember.memberName( request.getMemberName() );
-        familyMember.memberType( request.getMemberType() );
-        familyMember.mobileNumber( request.getMobileNumber() );
-        familyMember.panNumber( request.getPanNumber() );
+        familyMember.dob( request.getDob() );
         familyMember.relationship( request.getRelationship() );
+        familyMember.memberType( request.getMemberType() );
+        familyMember.employed( request.isEmployed() );
+        familyMember.handicapped( request.isHandicapped() );
+        familyMember.disabilityPercentage( request.getDisabilityPercentage() );
+        familyMember.autisticMember( request.isAutisticMember() );
+        familyMember.aadhaarNumber( request.getAadhaarNumber() );
+        familyMember.panNumber( request.getPanNumber() );
+        familyMember.mobileNumber( request.getMobileNumber() );
         familyMember.remarks( request.getRemarks() );
 
         return familyMember.build();
@@ -49,26 +49,26 @@ public class FamilyMapperImpl implements FamilyMapper {
 
         FamilyMemberResponse.FamilyMemberResponseBuilder familyMemberResponse = FamilyMemberResponse.builder();
 
-        familyMemberResponse.aadhaarNumber( entity.getAadhaarNumber() );
-        familyMemberResponse.active( entity.isActive() );
-        familyMemberResponse.age( entity.getAge() );
-        familyMemberResponse.autisticMember( entity.isAutisticMember() );
-        familyMemberResponse.createdAt( entity.getCreatedAt() );
-        familyMemberResponse.createdBy( entity.getCreatedBy() );
-        familyMemberResponse.disabilityPercentage( entity.getDisabilityPercentage() );
-        familyMemberResponse.dob( entity.getDob() );
-        familyMemberResponse.employed( entity.isEmployed() );
-        familyMemberResponse.forceNo( entity.getForceNo() );
-        familyMemberResponse.handicapped( entity.isHandicapped() );
         familyMemberResponse.id( entity.getId() );
+        familyMemberResponse.forceNo( entity.getForceNo() );
         familyMemberResponse.memberName( entity.getMemberName() );
-        familyMemberResponse.memberType( entity.getMemberType() );
-        familyMemberResponse.mobileNumber( entity.getMobileNumber() );
-        familyMemberResponse.panNumber( entity.getPanNumber() );
+        familyMemberResponse.dob( entity.getDob() );
+        familyMemberResponse.age( entity.getAge() );
         familyMemberResponse.relationship( entity.getRelationship() );
+        familyMemberResponse.memberType( entity.getMemberType() );
+        familyMemberResponse.employed( entity.isEmployed() );
+        familyMemberResponse.handicapped( entity.isHandicapped() );
+        familyMemberResponse.disabilityPercentage( entity.getDisabilityPercentage() );
+        familyMemberResponse.autisticMember( entity.isAutisticMember() );
+        familyMemberResponse.aadhaarNumber( entity.getAadhaarNumber() );
+        familyMemberResponse.panNumber( entity.getPanNumber() );
+        familyMemberResponse.mobileNumber( entity.getMobileNumber() );
         familyMemberResponse.remarks( entity.getRemarks() );
-        familyMemberResponse.updatedAt( entity.getUpdatedAt() );
+        familyMemberResponse.active( entity.isActive() );
+        familyMemberResponse.createdBy( entity.getCreatedBy() );
+        familyMemberResponse.createdAt( entity.getCreatedAt() );
         familyMemberResponse.updatedBy( entity.getUpdatedBy() );
+        familyMemberResponse.updatedAt( entity.getUpdatedAt() );
 
         return familyMemberResponse.build();
     }
@@ -93,18 +93,18 @@ public class FamilyMapperImpl implements FamilyMapper {
             return;
         }
 
-        entity.setAadhaarNumber( request.getAadhaarNumber() );
-        entity.setAutisticMember( request.isAutisticMember() );
-        entity.setDisabilityPercentage( request.getDisabilityPercentage() );
-        entity.setDob( request.getDob() );
-        entity.setEmployed( request.isEmployed() );
         entity.setForceNo( request.getForceNo() );
-        entity.setHandicapped( request.isHandicapped() );
         entity.setMemberName( request.getMemberName() );
-        entity.setMemberType( request.getMemberType() );
-        entity.setMobileNumber( request.getMobileNumber() );
-        entity.setPanNumber( request.getPanNumber() );
+        entity.setDob( request.getDob() );
         entity.setRelationship( request.getRelationship() );
+        entity.setMemberType( request.getMemberType() );
+        entity.setEmployed( request.isEmployed() );
+        entity.setHandicapped( request.isHandicapped() );
+        entity.setDisabilityPercentage( request.getDisabilityPercentage() );
+        entity.setAutisticMember( request.isAutisticMember() );
+        entity.setAadhaarNumber( request.getAadhaarNumber() );
+        entity.setPanNumber( request.getPanNumber() );
+        entity.setMobileNumber( request.getMobileNumber() );
         entity.setRemarks( request.getRemarks() );
     }
 }

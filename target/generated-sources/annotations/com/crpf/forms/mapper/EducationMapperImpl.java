@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-08T19:19:45+0530",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.46.0.v20260407-0427, environment: Java 21.0.10 (Eclipse Adoptium)"
+    date = "2026-06-08T19:30:12+0530",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
 public class EducationMapperImpl implements EducationMapper {
@@ -24,17 +24,17 @@ public class EducationMapperImpl implements EducationMapper {
 
         EducationRecord.EducationRecordBuilder educationRecord = EducationRecord.builder();
 
-        educationRecord.educationType( request.getEducationType() );
-        educationRecord.endDate( request.getEndDate() );
-        educationRecord.examPassed( request.getExamPassed() );
         educationRecord.forceNo( request.getForceNo() );
-        educationRecord.passingYear( request.getPassingYear() );
-        educationRecord.remarks( request.getRemarks() );
+        educationRecord.educationType( request.getEducationType() );
         educationRecord.schoolName( request.getSchoolName() );
-        educationRecord.startDate( request.getStartDate() );
+        educationRecord.passingYear( request.getPassingYear() );
+        educationRecord.examPassed( request.getExamPassed() );
         educationRecord.subject1( request.getSubject1() );
         educationRecord.subject2( request.getSubject2() );
         educationRecord.subject3( request.getSubject3() );
+        educationRecord.startDate( request.getStartDate() );
+        educationRecord.endDate( request.getEndDate() );
+        educationRecord.remarks( request.getRemarks() );
 
         return educationRecord.build();
     }
@@ -47,23 +47,23 @@ public class EducationMapperImpl implements EducationMapper {
 
         EducationRecordResponse.EducationRecordResponseBuilder educationRecordResponse = EducationRecordResponse.builder();
 
-        educationRecordResponse.active( entity.isActive() );
-        educationRecordResponse.createdAt( entity.getCreatedAt() );
-        educationRecordResponse.createdBy( entity.getCreatedBy() );
-        educationRecordResponse.educationType( entity.getEducationType() );
-        educationRecordResponse.endDate( entity.getEndDate() );
-        educationRecordResponse.examPassed( entity.getExamPassed() );
-        educationRecordResponse.forceNo( entity.getForceNo() );
         educationRecordResponse.id( entity.getId() );
-        educationRecordResponse.passingYear( entity.getPassingYear() );
-        educationRecordResponse.remarks( entity.getRemarks() );
+        educationRecordResponse.forceNo( entity.getForceNo() );
+        educationRecordResponse.educationType( entity.getEducationType() );
         educationRecordResponse.schoolName( entity.getSchoolName() );
-        educationRecordResponse.startDate( entity.getStartDate() );
+        educationRecordResponse.passingYear( entity.getPassingYear() );
+        educationRecordResponse.examPassed( entity.getExamPassed() );
         educationRecordResponse.subject1( entity.getSubject1() );
         educationRecordResponse.subject2( entity.getSubject2() );
         educationRecordResponse.subject3( entity.getSubject3() );
-        educationRecordResponse.updatedAt( entity.getUpdatedAt() );
+        educationRecordResponse.startDate( entity.getStartDate() );
+        educationRecordResponse.endDate( entity.getEndDate() );
+        educationRecordResponse.remarks( entity.getRemarks() );
+        educationRecordResponse.active( entity.isActive() );
+        educationRecordResponse.createdBy( entity.getCreatedBy() );
+        educationRecordResponse.createdAt( entity.getCreatedAt() );
         educationRecordResponse.updatedBy( entity.getUpdatedBy() );
+        educationRecordResponse.updatedAt( entity.getUpdatedAt() );
 
         return educationRecordResponse.build();
     }
@@ -88,16 +88,16 @@ public class EducationMapperImpl implements EducationMapper {
             return;
         }
 
-        entity.setEducationType( request.getEducationType() );
-        entity.setEndDate( request.getEndDate() );
-        entity.setExamPassed( request.getExamPassed() );
         entity.setForceNo( request.getForceNo() );
-        entity.setPassingYear( request.getPassingYear() );
-        entity.setRemarks( request.getRemarks() );
+        entity.setEducationType( request.getEducationType() );
         entity.setSchoolName( request.getSchoolName() );
-        entity.setStartDate( request.getStartDate() );
+        entity.setPassingYear( request.getPassingYear() );
+        entity.setExamPassed( request.getExamPassed() );
         entity.setSubject1( request.getSubject1() );
         entity.setSubject2( request.getSubject2() );
         entity.setSubject3( request.getSubject3() );
+        entity.setStartDate( request.getStartDate() );
+        entity.setEndDate( request.getEndDate() );
+        entity.setRemarks( request.getRemarks() );
     }
 }

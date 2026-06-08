@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-08T19:19:45+0530",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.46.0.v20260407-0427, environment: Java 21.0.10 (Eclipse Adoptium)"
+    date = "2026-06-08T19:30:11+0530",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
 public class MetadataMapperImpl implements MetadataMapper {
@@ -25,9 +25,9 @@ public class MetadataMapperImpl implements MetadataMapper {
 
         FormMetadataResponse.FormMetadataResponseBuilder formMetadataResponse = FormMetadataResponse.builder();
 
+        formMetadataResponse.formName( formMetadata.getFormName() );
         formMetadataResponse.description( formMetadata.getDescription() );
         formMetadataResponse.fields( toFieldResponseList( formMetadata.getFields() ) );
-        formMetadataResponse.formName( formMetadata.getFormName() );
 
         return formMetadataResponse.build();
     }
@@ -40,17 +40,17 @@ public class MetadataMapperImpl implements MetadataMapper {
 
         FormFieldMetadataResponse.FormFieldMetadataResponseBuilder formFieldMetadataResponse = FormFieldMetadataResponse.builder();
 
-        formFieldMetadataResponse.dependsOnField( fieldMetadata.getDependsOnField() );
-        formFieldMetadataResponse.dependsOnValue( fieldMetadata.getDependsOnValue() );
-        formFieldMetadataResponse.editable( fieldMetadata.isEditable() );
         formFieldMetadataResponse.fieldName( fieldMetadata.getFieldName() );
-        formFieldMetadataResponse.fieldType( fieldMetadata.getFieldType() );
         formFieldMetadataResponse.label( fieldMetadata.getLabel() );
-        formFieldMetadataResponse.maxLength( fieldMetadata.getMaxLength() );
-        formFieldMetadataResponse.minLength( fieldMetadata.getMinLength() );
-        formFieldMetadataResponse.regexPattern( fieldMetadata.getRegexPattern() );
+        formFieldMetadataResponse.fieldType( fieldMetadata.getFieldType() );
         formFieldMetadataResponse.required( fieldMetadata.isRequired() );
         formFieldMetadataResponse.visible( fieldMetadata.isVisible() );
+        formFieldMetadataResponse.editable( fieldMetadata.isEditable() );
+        formFieldMetadataResponse.minLength( fieldMetadata.getMinLength() );
+        formFieldMetadataResponse.maxLength( fieldMetadata.getMaxLength() );
+        formFieldMetadataResponse.regexPattern( fieldMetadata.getRegexPattern() );
+        formFieldMetadataResponse.dependsOnField( fieldMetadata.getDependsOnField() );
+        formFieldMetadataResponse.dependsOnValue( fieldMetadata.getDependsOnValue() );
 
         return formFieldMetadataResponse.build();
     }
