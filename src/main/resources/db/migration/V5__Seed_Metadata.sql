@@ -58,5 +58,3 @@ INSERT INTO users (id, username, password, enabled, created_by) VALUES
 INSERT INTO user_roles (user_id, role_id) VALUES
 (1, 1), -- admin has ROLE_ADMIN
 (2, 2);
-
-INSERT INTO dynamic_form.user_roles (user_id, role_id) VALUES(1, 1);-- user has ROLE_USER

@@ -10,4 +10,9 @@ public class DynamicFormServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(DynamicFormServiceApplication.class, args);
     }
+
+    @PostConstruct
+    public void init() {
+        System.out.println(new BCryptPasswordEncoder().encode("admin123"));
+    }
 }
