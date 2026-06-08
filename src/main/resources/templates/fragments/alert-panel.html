@@ -1,0 +1,5 @@
+<!-- Reusable Alert Panel Fragment -->
+<div th:fragment="alert(message, type)" th:classappend="'gov-alert-' + ${type}" class="gov-alert">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <div th:text="${message}">Alert message goes here.</div>
+</div>

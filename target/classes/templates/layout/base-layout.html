@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, content, activeTab, featureScript)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">CRPF Personnel Management Portal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Government Theme CSS -->
+    <link href="/api/auth/css/government-theme.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Global Toast Container -->
+    <div id="gov-toast-container" class="gov-toast-container"></div>
+
+    <!-- 1. Authentication Layer (Overlay hidden if token present) -->
+    <div id="login-container" class="d-flex align-items-center justify-content-center">
+        <div class="login-card text-center">
+            <!-- GoI Emblem & Title in Login -->
+            <div class="mb-4">
+                <div class="emblem-placeholder mb-2">Emblem</div>
+                <h3 class="fw-bold" style="color: var(--gov-primary); font-size: 1.25rem;">CRPF Personnel Portal</h3>
+                <p class="text-muted" style="font-size: 0.85rem;">MHA, Govt. of India Security Verification</p>
+            </div>
+            
+            <form id="login-form" class="text-start">
+                <div class="mb-3">
+                    <label for="username" class="gov-label">Username / Login ID</label>
+                    <input type="text" class="form-control gov-form-control w-100" id="username" required value="admin">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="gov-label">Password</label>
+                    <input type="password" class="form-control gov-form-control w-100" id="password" required value="admin123">
+                </div>
+                <button type="submit" class="gov-btn gov-btn-maroon w-100 py-2">
+                    <i class="fa-solid fa-lock me-1"></i> Authenticate credentials
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Main Portal Interface (Visible only if authenticated) -->
+    <div id="app-container" style="display: none;">
+        <!-- Header -->
+        <div th:replace="~{layout/header :: header}"></div>
+
+        <!-- Layout Body -->
+        <div class="app-wrapper">
+            <!-- Sidebar -->
+            <div th:replace="~{layout/sidebar :: sidebar(${activeTab})}"></div>
+
+            <!-- Main Content Grid -->
+            <main class="gov-content d-flex flex-column">
+                <div th:replace="${content}">
+                    <!-- Dynamic page-specific content will render here -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <div th:replace="~{layout/footer :: footer}"></div>
+    </div>
+
+    <!-- Core Scripts -->
+    <!-- Bootstrap 5 Bundle with Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Core modules (Must load in order) -->
+    <script src="/api/auth/js/core/api-client.js"></script>
+    <script src="/api/auth/js/core/modal-manager.js"></script>
+    <script src="/api/auth/js/core/metadata-service.js"></script>
+    <script src="/api/auth/js/core/form-renderer.js"></script>
+    <script src="/api/auth/js/features/employee-search-manager.js"></script>
+    <script src="/api/auth/js/features/record-management.js"></script>
+
+    <!-- Global Application Init Shell -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initSession();
+
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('header-logout-btn').addEventListener('click', handleLogout);
+            
+            // Format dynamic date
+            const dateEl = document.getElementById('current-portal-date');
+            if (dateEl) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                dateEl.innerText = new Date().toLocaleDateString('en-IN', options);
+            }
+        });
+
+        // Trigger on auth expiry
+        document.addEventListener('auth-expired', () => {
+            initSession();
+        });
+
+        function initSession() {
+            const token = ApiClient.getToken();
+            const loginContainer = document.getElementById('login-container');
+            const appContainer = document.getElementById('app-container');
+
+            if (token) {
+                loginContainer.style.display = 'none';
+                appContainer.style.display = 'block';
+                
+                const userText = document.getElementById('header-username');
+                if (userText) userText.innerText = ApiClient.getUsername();
+                
+                // Initialize feature-specific code
+                if (window.initFeature) {
+                    window.initFeature();
+                }
+            } else {
+                loginContainer.style.display = 'flex';
+                appContainer.style.display = 'none';
+            }
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const userInp = document.getElementById('username');
+            const passInp = document.getElementById('password');
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...`;
+
+            try {
+                const data = await ApiClient.post('/api/auth/login', {
+                    username: userInp.value,
+                    password: passInp.value
+                });
+
+                ApiClient.setToken(data.token);
+                ApiClient.setUsername(data.username);
+                ApiClient.setRoles(data.roles);
+
+                NotificationManager.showToast('Authentication check passed.', 'success');
+                initSession();
+            } catch (err) {
+                NotificationManager.showToast(err.message || 'Authentication failed.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-lock me-1"></i> Authenticate credentials`;
+            }
+        }
+
+        function handleLogout() {
+            ApiClient.clearAuth();
+            NotificationManager.showToast('Session terminated.', 'info');
+            initSession();
+        }
+    </script>
+
+    <!-- Page Specific Script Loader -->
+    <script th:src="${featureScript}"></script>
+
+</body>
+</html>

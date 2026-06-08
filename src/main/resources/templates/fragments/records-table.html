@@ -1,0 +1,71 @@
+<!-- Reusable Records Directory Table Fragment -->
+<div th:fragment="records-table(module)" class="gov-card flex-grow-1">
+    <div class="gov-card-header">
+        <h2>Personnel Records Directory</h2>
+        <div class="d-flex gap-2">
+            <button type="button" id="btn-refresh" class="gov-btn gov-btn-secondary py-1 px-3" style="font-size: 0.8rem;">
+                <i class="fa-solid fa-sync me-1"></i> Refresh Table
+            </button>
+            <button type="button" id="btn-add-record" class="gov-btn gov-btn-maroon py-1 px-3" style="font-size: 0.8rem; display: none;">
+                <i class="fa-solid fa-plus me-1"></i> Add Entry
+            </button>
+        </div>
+    </div>
+
+    <!-- Search Controls -->
+    <div class="row mb-3 g-2">
+        <div class="col-md-5 col-lg-4">
+            <div class="input-group">
+                <span class="input-group-text bg-light border-end-0" style="border-radius: 3px 0 0 3px; padding: 0.35rem 0.65rem;">
+                    <i class="fa-solid fa-filter text-muted" style="font-size: 0.8rem;"></i>
+                </span>
+                <input type="text" id="search-input" class="form-control gov-form-control border-start-0" placeholder="Filter records in directory..." style="border-radius: 0 3px 3px 0; font-size: 0.85rem; padding: 0.35rem 0.65rem;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Table Container -->
+    <div class="table-responsive" style="border: 1px solid var(--gov-border); border-radius: 3px;">
+        <table class="gov-table text-nowrap" id="records-table">
+            <!-- 1. Education Headers -->
+            <thead th:if="${module == 'education'}">
+                <tr>
+                    <th>Force No</th>
+                    <th>Education Type</th>
+                    <th>School / Board</th>
+                    <th>Passing Year</th>
+                    <th>Exam Passed</th>
+                    <th>Subjects</th>
+                    <th>Course Duration</th>
+                    <th>Remarks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            
+            <!-- 2. Family Headers -->
+            <thead th:if="${module == 'family'}">
+                <tr>
+                    <th>Force No</th>
+                    <th>Member Name</th>
+                    <th>Relationship</th>
+                    <th>Date of Birth</th>
+                    <th>Age</th>
+                    <th>Employed</th>
+                    <th>Handicapped</th>
+                    <th>Autistic</th>
+                    <th>Aadhaar Number</th>
+                    <th>PAN Number</th>
+                    <th>Mobile Number</th>
+                    <th>Remarks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            
+            <tbody id="records-list">
+                <tr>
+                    <td colspan="15" class="text-center py-4 text-muted">No records loaded.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

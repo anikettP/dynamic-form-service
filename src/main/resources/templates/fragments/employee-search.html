@@ -1,0 +1,26 @@
+<!-- Reusable Employee Search Fragment -->
+<div th:fragment="search-panel" class="gov-card mb-4">
+    <div class="gov-card-header">
+        <h2>Personnel Verification</h2>
+    </div>
+    <div class="row align-items-center g-3">
+        <div class="col-md-6 col-lg-4">
+            <label for="force-no-search-input" class="gov-label">Enter Force Number</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light border-end-0" style="border-radius: 3px 0 0 3px;">
+                    <i class="fa-solid fa-address-card text-muted"></i>
+                </span>
+                <input type="text" id="force-no-search-input" class="form-control gov-form-control border-start-0" placeholder="e.g. 123456" style="border-radius: 0 3px 3px 0;">
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-3 d-flex align-items-end pt-md-4">
+            <button type="button" id="force-no-search-btn" class="gov-btn gov-btn-primary w-100">
+                <i class="fa-solid fa-search me-1"></i> Verify Record
+            </button>
+            <!-- Loader Spinner -->
+            <div id="search-loader" class="gov-loader ms-2 d-none">
+                <div class="gov-spinner"></div>
+            </div>
+        </div>
+    </div>
+</div>
